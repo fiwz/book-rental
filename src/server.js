@@ -5,7 +5,7 @@ const { PORT } = require('./config/index.js');
 const server = express();
 
 server.use(express.json());
-server.use(App);
+server.use('/api', App);
 
 server.listen(PORT, () => {
   console.info(`Server listening on port ${PORT}`)
