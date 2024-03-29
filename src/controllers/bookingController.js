@@ -186,7 +186,7 @@ exports.returnBook = async (req, res) => {
     /** Update book stock */
     const updateStock = await Book.update(
       {
-        stock: 1
+        stock: Sequelize.literal('stock + 1'),
       },
       {
         where: {
@@ -222,7 +222,7 @@ exports.returnBook = async (req, res) => {
       } else {
         const updateMemberStatus = await Member.update(
           {
-            is_penalized: Sequelize.literal('is_penalized + 1'),
+            is_penalized: 0,
             penalized_end_date: null
           },
           {
