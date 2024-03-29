@@ -16,15 +16,7 @@ exports.getBook = async (req, res) => {
         ['title', 'ASC']
       ],
     });
-
-    const data = books.map((item) => {
-      // item.dataValues.createdAt = moment.utc(item.createdAt).local().format('YYYY-MM-DD HH:mm:ss');
-      // item.dataValues.updatedAt = moment.utc(item.updatedAt).local().format('YYYY-MM-DD HH:mm:ss');
-
-      return item
-    })
-
-    return data
+    return books
   } catch (err) {
     return {
       status: 'error',

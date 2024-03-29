@@ -61,25 +61,6 @@ app.post("/booking", async (req, res) => {
   }
 });
 
-// app.get("/booking", async (req, res) => {
-//   try {
-//     const data = await getBookingList(req);
-
-//     res.status(200).json({
-//       status: "success",
-//       message: "Congrats! This is in a routes folder!",
-//       data: data,
-//     });
-//   } catch (err) {
-//     console.error(err);
-
-//     res.status(err.code ? err.code : 500).json({
-//       status: "error",
-//       message: err.message,
-//     });
-//   }
-// });
-
 app.post("/return-book", async (req, res) => {
   try {
     const data = await returnBook(req);

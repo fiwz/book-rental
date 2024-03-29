@@ -42,8 +42,6 @@ exports.getMember = async (req, res) => {
           });
         })
         member.dataValues.borrowed_book = borrowed_book
-
-
       })
       member.dataValues.borrowed_book_count = currentBookCount
 
