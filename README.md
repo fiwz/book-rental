@@ -26,3 +26,7 @@ Available for local environtment
 https://localhost:5001/docs
 
 > You may need to adjust the hostname and port
+
+# Soal Algoritma
+
+The solutions from question 1-4 can be found in file `/soal-algoritma/soal1.js`
