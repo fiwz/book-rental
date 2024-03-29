@@ -8,7 +8,11 @@ const server = express();
 server.use(express.json());
 server.use('/api', App);
 
-server.listen(PORT, () => {
-  console.info(`Server listening on port ${PORT}`)
-  swaggerDocs(server, PORT)
-});
+if (process.env.NODE_ENV !== 'test') {
+  server.listen(PORT, () => {
+    console.info(`Server listening on port ${PORT}`)
+    swaggerDocs(server, PORT)
+  });
+}
+
+module.exports = server;
