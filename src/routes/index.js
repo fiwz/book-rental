@@ -3,7 +3,6 @@ const { getMember } = require("../controllers/memberController");
 const { getBook } = require("../controllers/bookController");
 const {
   storeBooking,
-  getBookingList,
   returnBook,
 } = require("../controllers/bookingController");
 

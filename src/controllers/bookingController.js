@@ -127,24 +127,6 @@ exports.storeBooking = async (req, res) => {
   }
 }
 
-exports.getBookingList = async (req, res) => {
-  try {
-    const data = await Booking.findAll({
-      order: [
-        ['id', 'DESC']
-      ],
-      include: BookingDetails
-    })
-
-    return data
-  } catch (err) {
-    return {
-      status: 'error',
-      message: err.message
-    }
-  }
-}
-
 exports.returnBook = async (req, res) => {
   try {
     /** Check if the member already borrow books */
