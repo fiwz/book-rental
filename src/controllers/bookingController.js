@@ -1,4 +1,4 @@
-const { Op } = require("sequelize");
+const { Op, Sequelize } = require("sequelize");
 const { QueryTypes } = require('sequelize');
 const { Book } = require('../models/book')
 const { Booking } = require('../models/bookings')
@@ -99,7 +99,7 @@ exports.storeBooking = async (req, res) => {
     /** Update book stock */
     const updateStock = await Book.update(
       {
-        stock: 0
+        stock: Sequelize.literal('stock - 1'),
       },
       {
         where: {
@@ -222,7 +222,7 @@ exports.returnBook = async (req, res) => {
       } else {
         const updateMemberStatus = await Member.update(
           {
-            is_penalized: 0,
+            is_penalized: Sequelize.literal('is_penalized + 1'),
             penalized_end_date: null
           },
           {
@@ -234,11 +234,25 @@ exports.returnBook = async (req, res) => {
       } // end of update member penalized
     }
 
-    return checkBooking
+    let borrowedBook = getBookByCode(myBook)
+    return borrowedBook
   } catch (err) {
     return {
       status: 'error',
       message: err.message
     }
   }
+}
+
+const getBookByCode = async (arrCode = []) => {
+  let borrowedBook = await Book.findAll({
+    attributes: ['code', 'title', 'author'],
+    where: {
+      code: {
+        [Op.in]: arrCode
+      }
+    }
+  })
+
+  return borrowedBook;
 }
